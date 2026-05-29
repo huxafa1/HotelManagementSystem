@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using HotelManagementSystem.Models;
+using HotelManagementSystem.Services;
 
 namespace MiniWhatsApp
 {
+
     public partial class RoomsControl : UserControl
     {
 
@@ -139,13 +142,13 @@ namespace MiniWhatsApp
                 conn.Open();
 
                 string query =
- "UPDATE Rooms " +
- "SET Status='Available' " +
- "WHERE RoomNumber IN " +
- "(" +
- "SELECT RoomNumber FROM Bookings " +
- "WHERE CheckOutDate < CURDATE()" +
- ")";
+    "UPDATE Rooms " +
+    "SET Status='Available' " +
+    "WHERE RoomNumber IN " +
+    "(" +
+    "SELECT RoomNumber FROM Bookings " +
+    "WHERE CheckOutDate < CURDATE()" +
+    ")";
 
                 MySqlCommand cmd =
                     new MySqlCommand(query, conn);
@@ -167,42 +170,34 @@ namespace MiniWhatsApp
             UpdateExpiredBookings();
 
             flowRooms.Controls.Clear();
-            MySqlConnection conn = DBConnection.GetConnection();
 
-            try
+            RoomService service =
+                new RoomService();
+
+            List<Room> rooms =
+                service.GetRooms();
+
+            foreach (Room roomData in rooms)
             {
-                conn.Open();
+                RoomCard room =
+                    new RoomCard();
 
-                string query = "SELECT * FROM Rooms";
+                room.RoomNumber =
+                    roomData.RoomNumber;
 
-                MySqlCommand cmd = new MySqlCommand(query, conn);
+                room.RoomType =
+                    roomData.RoomType;
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                room.Price =
+                    roomData.Price;
 
-                while (reader.Read())
-                {
-                    RoomCard room = new RoomCard();
+                room.Guests =
+                    roomData.Guests.ToString();
 
-                    room.RoomNumber = reader["RoomNumber"].ToString();
+                room.Status =
+                    roomData.Status;
 
-                    room.RoomType = reader["RoomType"].ToString();
-
-                    room.Price = reader["Price"].ToString();
-
-                    room.Guests =reader["Guests"].ToString();
-
-                    room.Status = reader["Status"].ToString();
-
-                    flowRooms.Controls.Add(room);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                flowRooms.Controls.Add(room);
             }
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotelManagementSystem.Services;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace MiniWhatsApp
 {
@@ -37,54 +38,22 @@ namespace MiniWhatsApp
         }
         private void LoadPayments()
         {
-            MySqlConnection conn = DBConnection.GetConnection();
-
             try
             {
-                conn.Open();
+                PaymentService service =
+                    new PaymentService();
 
-                string query;
-
-                if (IsAdmin)
-                {
-                    query =
-"SELECT Id, Username, RoomNumber, " +
-"PaymentMethod, Amount, PaymentDate " +
-"FROM Payments";
-                }
-                else
-                {
-                    query =
-                    "SELECT RoomNumber, PaymentMethod, " +
-                    "Amount, PaymentDate " +
-                    "FROM Payments " +
-                    "WHERE Username=@Username";
-                }
-
-                MySqlDataAdapter adapter =
-                    new MySqlDataAdapter(query, conn);
-
-                if (!IsAdmin)
-                {
-                    adapter.SelectCommand.Parameters.AddWithValue(
-                        "@Username",
+                DataTable dt =
+                    service.GetPayments(
+                        IsAdmin,
                         CurrentUser.Username
                     );
-                }
-
-                DataTable dt = new DataTable();
-
-                adapter.Fill(dt);
 
                 dgvPayments.DataSource = dt;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 

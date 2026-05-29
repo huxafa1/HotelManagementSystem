@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotelManagementSystem.Services;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace MiniWhatsApp
 {
@@ -37,62 +38,22 @@ namespace MiniWhatsApp
 
         private void LoadBookings()
         {
-            MySqlConnection conn = DBConnection.GetConnection();
-
             try
             {
-                conn.Open();
+                BookingService service =
+                    new BookingService();
 
-                string query;
-
-                if (IsAdmin)
-                {
-                    query =
-                    "SELECT Username, Bookings.RoomNumber, " +
-                    "Rooms.Guests, CheckInDate, CheckOutDate, " +
-                    "TotalNights, TotalAmount, Bookings.Status " +
-                    "FROM Bookings " +
-                    "INNER JOIN Rooms " +
-                    "ON Bookings.RoomNumber = Rooms.RoomNumber";
-                }
-
-                else
-                    {
-                        query =
-                        "SELECT Bookings.RoomNumber, Rooms.Guests, " +
-                        "CheckInDate, CheckOutDate, TotalNights, " +
-                        "TotalAmount, Bookings.Status " +
-                        "FROM Bookings " +
-                        "INNER JOIN Rooms " +
-                        "ON Bookings.RoomNumber = Rooms.RoomNumber " +
-                        "WHERE Username=@Username";
-                    }
-                
-
-                MySqlDataAdapter adapter =
-                    new MySqlDataAdapter(query, conn);
-
-                if (!IsAdmin)
-                {
-                    adapter.SelectCommand.Parameters.AddWithValue(
-                        "@Username",
+                DataTable dt =
+                    service.GetBookings(
+                        IsAdmin,
                         CurrentUser.Username
                     );
-                }
-
-                DataTable dt = new DataTable();
-
-                adapter.Fill(dt);
 
                 dgvBookings.DataSource = dt;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 
