@@ -40,7 +40,7 @@
             // 
             this.lblRoomNo.AutoSize = true;
             this.lblRoomNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoomNo.Location = new System.Drawing.Point(74, 24);
+            this.lblRoomNo.Location = new System.Drawing.Point(79, 18);
             this.lblRoomNo.Name = "lblRoomNo";
             this.lblRoomNo.Size = new System.Drawing.Size(130, 32);
             this.lblRoomNo.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             this.lblType.AutoSize = true;
             this.lblType.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.Location = new System.Drawing.Point(97, 68);
+            this.lblType.Location = new System.Drawing.Point(80, 60);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(78, 28);
             this.lblType.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(97, 96);
+            this.lblPrice.Location = new System.Drawing.Point(80, 97);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(60, 28);
             this.lblPrice.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(75, 133);
+            this.lblStatus.Location = new System.Drawing.Point(80, 135);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(100, 28);
             this.lblStatus.TabIndex = 3;
@@ -78,9 +78,9 @@
             // 
             // btnBook
             // 
-            this.btnBook.Location = new System.Drawing.Point(80, 214);
+            this.btnBook.Location = new System.Drawing.Point(67, 203);
             this.btnBook.Name = "btnBook";
-            this.btnBook.Size = new System.Drawing.Size(95, 38);
+            this.btnBook.Size = new System.Drawing.Size(124, 38);
             this.btnBook.TabIndex = 4;
             this.btnBook.Text = "Book Now";
             this.btnBook.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             // 
             this.lblGuests.AutoSize = true;
             this.lblGuests.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGuests.Location = new System.Drawing.Point(86, 172);
+            this.lblGuests.Location = new System.Drawing.Point(80, 175);
             this.lblGuests.Name = "lblGuests";
             this.lblGuests.Size = new System.Drawing.Size(89, 25);
             this.lblGuests.TabIndex = 5;
@@ -108,6 +108,7 @@
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblRoomNo);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 20, 20);
             this.Name = "RoomCard";
             this.Size = new System.Drawing.Size(289, 255);
             this.ResumeLayout(false);

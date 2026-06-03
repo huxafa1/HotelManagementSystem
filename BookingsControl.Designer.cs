@@ -46,13 +46,14 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(979, 70);
+            this.panelHeader.Size = new System.Drawing.Size(979, 117);
             this.panelHeader.TabIndex = 0;
             // 
             // btnCancelBooking
             // 
             this.btnCancelBooking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelBooking.Location = new System.Drawing.Point(799, 13);
+            this.btnCancelBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelBooking.Location = new System.Drawing.Point(774, 41);
             this.btnCancelBooking.Name = "btnCancelBooking";
             this.btnCancelBooking.Size = new System.Drawing.Size(177, 40);
             this.btnCancelBooking.TabIndex = 1;
@@ -64,20 +65,20 @@
             // 
             this.lblBookingTitle.AutoSize = true;
             this.lblBookingTitle.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookingTitle.Location = new System.Drawing.Point(3, 13);
+            this.lblBookingTitle.Location = new System.Drawing.Point(3, 27);
             this.lblBookingTitle.Name = "lblBookingTitle";
-            this.lblBookingTitle.Size = new System.Drawing.Size(268, 54);
+            this.lblBookingTitle.Size = new System.Drawing.Size(197, 54);
             this.lblBookingTitle.TabIndex = 0;
-            this.lblBookingTitle.Text = "My Bookings";
+            this.lblBookingTitle.Text = "Bookings";
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContent.Controls.Add(this.dgvBookings);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(0, 70);
+            this.panelContent.Location = new System.Drawing.Point(0, 117);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(979, 486);
+            this.panelContent.Size = new System.Drawing.Size(979, 439);
             this.panelContent.TabIndex = 1;
             // 
             // dgvBookings
@@ -93,7 +94,7 @@
             this.dgvBookings.ReadOnly = true;
             this.dgvBookings.RowHeadersWidth = 62;
             this.dgvBookings.RowTemplate.Height = 28;
-            this.dgvBookings.Size = new System.Drawing.Size(979, 486);
+            this.dgvBookings.Size = new System.Drawing.Size(979, 439);
             this.dgvBookings.TabIndex = 0;
             // 
             // BookingsControl
